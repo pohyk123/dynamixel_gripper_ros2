@@ -4,7 +4,7 @@ setup(
     name='dynamixel_gripper_ros2',
     version='0.0.0',
     packages=[],
-    py_modules=['dxl_controller_py'],
+    py_modules=['dynamixel_gripper'],
     install_requires=['setuptools'],
     author='Poh Yong Keat',
     author_email='yongkeat.poh@hopetechinik.com',
@@ -22,7 +22,7 @@ setup(
     test_suite='test',
     entry_points={
         'console_scripts': [
-            'dxl_controller_py = dxl_controller_py:main'
+            'dynamixel_gripper = dynamixel_gripper:main'
         ],
     },
 )

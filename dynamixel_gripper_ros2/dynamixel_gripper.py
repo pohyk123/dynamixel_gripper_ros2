@@ -81,7 +81,7 @@ def dxl_init():
 
     # Open port
     if portHandler.openPort():
-        node.get_logger().info("Succeeded to open the port")
+        print("Succeeded to open the port")
     else:
         node.get_logger().error("Failed to open the port")
         getch()
@@ -89,7 +89,7 @@ def dxl_init():
 
     # Set port baudrate
     if portHandler.setBaudRate(BAUDRATE):
-        node.get_logger().info("Succeeded to change the baudrate")
+        print("Succeeded to change the baudrate")
     else:
         node.get_logger().error("Failed to change the baudrate")
         getch()
@@ -98,31 +98,31 @@ def dxl_init():
     # Enable left Dynamixel Torque
     dxl_comm_result, dxl_error = packetHandler.write1ByteTxRx(portHandler, DXLleft_ID, ADDR_AX_TORQUE_ENABLE, TORQUE_ENABLE)
     if dxl_comm_result != COMM_SUCCESS:
-        node.get_logger().info("%s" % packetHandler.getTxRxResult(dxl_comm_result))
+        print("%s" % packetHandler.getTxRxResult(dxl_comm_result))
     elif dxl_error != 0:
         node.get_logger().error("%s" % packetHandler.getRxPacketError(dxl_error))
     else:
-        node.get_logger().info("Dynamixel#%d has been successfully connected" % DXLleft_ID)
+        print("Dynamixel#%d has been successfully connected" % DXLleft_ID)
 
     # Enable right Dynamixel Torque
     dxl_comm_result, dxl_error = packetHandler.write1ByteTxRx(portHandler, DXLright_ID, ADDR_AX_TORQUE_ENABLE, TORQUE_ENABLE)
     if dxl_comm_result != COMM_SUCCESS:
-        node.get_logger().info("%s" % packetHandler.getTxRxResult(dxl_comm_result))
+        print("%s" % packetHandler.getTxRxResult(dxl_comm_result))
     elif dxl_error != 0:
         node.get_logger().error("%s" % packetHandler.getRxPacketError(dxl_error))
     else:
-        node.get_logger().info("Dynamixel#%d has been successfully connected" % DXLright_ID)
+        print("Dynamixel#%d has been successfully connected" % DXLright_ID)
 
     # Set dynamixel joint speed
     dxl_comm_result, dxl_error = packetHandler.write2ByteTxRx(portHandler, DXLleft_ID, ADDR_AX_VELOCITY, DXL_MOVING_SPEED)
     if dxl_comm_result != COMM_SUCCESS:
-        node.get_logger().info("%s" % packetHandler.getTxRxResult(dxl_comm_result))
+        print("%s" % packetHandler.getTxRxResult(dxl_comm_result))
     elif dxl_error != 0:
         node.get_logger().error("%s" % packetHandler.getRxPacketError(dxl_error))
 
     dxl_comm_result, dxl_error = packetHandler.write2ByteTxRx(portHandler, DXLright_ID, ADDR_AX_VELOCITY, DXL_MOVING_SPEED)
     if dxl_comm_result != COMM_SUCCESS:
-        node.get_logger().info("%s" % packetHandler.getTxRxResult(dxl_comm_result))
+        print("%s" % packetHandler.getTxRxResult(dxl_comm_result))
     elif dxl_error != 0:
         node.get_logger().error("%s" % packetHandler.getRxPacketError(dxl_error))
 
@@ -130,6 +130,7 @@ def dxl_init():
 def dxl_open():
     global packetHandler
     global portHandler
+    global node
 
     # Write Dynamixel gripper open position to left and right motors
     dxl_comm_result, dxl_error = packetHandler.write2ByteTxRx(portHandler, DXLleft_ID, ADDR_AX_GOAL_POSITION, DXLleft_OPEN_POSITION_VALUE)
@@ -147,6 +148,7 @@ def dxl_open():
 def dxl_close():
     global packetHandler
     global portHandler
+    global node
 
     # Write Dynamixel gripper closed position to left and right motors
     dxl_comm_result, dxl_error = packetHandler.write2ByteTxRx(portHandler, DXLleft_ID, ADDR_AX_GOAL_POSITION, DXLleft_CLOSE_POSITION_VALUE)
@@ -165,6 +167,7 @@ def dxl_close():
 def dxl_present_pos():
     global packetHandler
     global portHandler
+    global node
 
     # Read Dynamixel gripper present position
     dxlleft_present_position, dxl_comm_result, dxl_error = packetHandler.read2ByteTxRx(portHandler, DXLleft_ID, ADDR_AX_PRESENT_POSITION)
@@ -185,6 +188,7 @@ def dxl_present_pos():
 def dxl_present_temp():
     global packetHandler
     global portHandler
+    global node
 
     # Read Dynamixel gripper present temperature
     dxlleft_present_temp, dxl_comm_result, dxl_error = packetHandler.read1ByteTxRx(portHandler, DXLleft_ID, ADDR_AX_PRESENT_TEMP)
@@ -282,6 +286,7 @@ def dxl_step_release(gripState):
 def dxl_get_load():
     global packetHandler
     global portHandler
+    global node
 
     # Read Dynamixel gripper load
     dxlleft_load, dxl_comm_result, dxl_error = packetHandler.read2ByteTxRx(portHandler, DXLleft_ID, ADDR_AX_PRESENT_LOAD)
@@ -352,7 +357,7 @@ class dxl_controller(Node):
         # Open gripper
         elif(gripCommand == 0):
             dxl_open()
-            node.get_logger().info('Opening gripper.)
+            node.get_logger().info('Opening gripper.')
             state.gripper_state = 0
             self.gripState = 0
 

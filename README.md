@@ -9,6 +9,7 @@ An end effector is the device at the end of a robotic arm, designed to interact 
 * Ensure dynamixel motors have the proper power supply & both servos have a different ID (you can change them by using a [GUI tool](http://emanual.robotis.com/docs/en/software/dynamixel/dynamixel_workbench/#gui)
 * Install [dynamixel_sdk](http://emanual.robotis.com/docs/en/software/dynamixel/dynamixel_sdk/download/#repository)
 * Download & place these packages in your_ros2_workspace/src
+* Source your ROS2 distro
 * Run the following commands (root folder of your ROS2 workspace):
 ```
 colcon build --symlink-install
@@ -16,7 +17,7 @@ source install/setup.bash
 ```
 * To start using the ROS2 API:
 ```
-dynamixel_gripper_ros2
+dynamixel_gripper
 ros2 topic pub /gripper/command std_msgs/Int32 "{data: 1}" --once
 ```
 This will initialise the gripper node and close the gripper.
