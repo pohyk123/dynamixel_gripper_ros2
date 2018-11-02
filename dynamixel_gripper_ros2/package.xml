@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>dynamixel_gripper_ros2</name>
+  <version>0.0.0</version>
+  <description>Package containing examples of how to use the DYNAMIXEL ROS 2 API.</description>
+  <maintainer email="yongkeat.poh@hopetechinik.com">Poh Yong Keat</maintainer>
+  <license>Apache License 2.0</license>
+
+  <build_depend>dynamixel_gripper_ros2_msgs</build_depend>
+
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>dynamixel_gripper_ros2_msgs</exec_depend>
+
+  <test_depend>ament_copyright</test_depend>
+  <test_depend>ament_pep257</test_depend>
+  <test_depend>ament_pep8</test_depend>
+  <test_depend>ament_pyflakes</test_depend>
+  <test_depend>rclpy</test_depend>
+  <test_depend>std_msgs</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>
