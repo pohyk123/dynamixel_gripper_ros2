@@ -25,13 +25,13 @@ This will initialise the gripper node and close the gripper.
 
 **Published Topics**
 * /gripper/load (msg type: dynamixel_gripper/LoadState)
-- Returns the current load in both servos
+  - Returns the current load in both servos
 * /gripper/state (msg type: dynamixel_gripper/GripState)
-- Returns 0 if gripper is open, and 1 if gripper is closed; contains other motor info as well
+  - Returns 0 if gripper is open, and 1 if gripper is closed; contains other motor info as well
 
 **Subscribed Topics**
 * /gripper/command (msg type: std_msgs/Int32)
-- 0 - open, 1 - close
+  - 0 - open, 1 - close
 
 ## Important points
 * Gripper may get hot after prolonged use. Keep track and ensure its **temperature does not exceed 65 degrees celsius**. To track temperature, check published topic **/gripper/state**
